@@ -38,7 +38,7 @@ public class AppConfig {
         emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         Properties props=
                 new Properties();
-        props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        //props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         props.setProperty("hibernate.hbm2ddl.auto", "update");
         emf.setJpaProperties(props);
         return emf;

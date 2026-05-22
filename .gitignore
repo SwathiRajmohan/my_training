@@ -37,3 +37,20 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# IntelliJ files
+.idea/
+*.iml
+
+# Maven target folder
+target/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
