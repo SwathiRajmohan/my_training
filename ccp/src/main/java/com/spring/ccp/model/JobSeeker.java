@@ -1,6 +1,5 @@
 package com.spring.ccp.model;
 
-import com.spring.ccp.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,28 +11,23 @@ import java.time.Instant;
 @Entity
 @Getter
 @Setter
-public class Users {
+public class JobSeeker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(length = 1000)
+    private String summary;
 
-    @Column(unique = true,nullable = false)
-    private String email;
+    private String experience;
 
-    private String password;
+    private String skills;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private Users user;
 
     @CreationTimestamp
     private Instant createdAt;
-
     @UpdateTimestamp
     private Instant updatedAt;
-
-    @OneToOne(mappedBy = "user")
-    private Employer employer; //one emp -> one user
-
-    @OneToOne(mappedBy = "user")
-    private JobSeeker jobSeeker; //like one emp->one user == one jobseeker -> one user
 }

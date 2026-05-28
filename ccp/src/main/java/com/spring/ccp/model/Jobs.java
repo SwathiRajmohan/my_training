@@ -1,6 +1,5 @@
 package com.spring.ccp.model;
 
-import com.spring.ccp.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,32 +7,28 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Getter
 @Setter
-public class Users {
+public class Jobs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(unique = true,nullable = false)
-    private String email;
-
-    private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
+    @Column(nullable =false)
+    private String title;
+    @Column(length = 1000)
+    private String description;
+    private double salary;
+    private String location;
+    private LocalDate postedDate;
     @CreationTimestamp
     private Instant createdAt;
-
     @UpdateTimestamp
     private Instant updatedAt;
 
-    @OneToOne(mappedBy = "user")
-    private Employer employer; //one emp -> one user
-
-    @OneToOne(mappedBy = "user")
-    private JobSeeker jobSeeker; //like one emp->one user == one jobseeker -> one user
+    // Many jobs -> 0ne emp
+    @ManyToOne
+    private Employer employer;
 }
